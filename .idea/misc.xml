@@ -37,6 +37,9 @@
     <option name="useOldEclipseJavaFormatter" value="true" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
   <component name="IdProvider" IDEtalkID="2072085438CCDC18E050B01D94E76296" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
