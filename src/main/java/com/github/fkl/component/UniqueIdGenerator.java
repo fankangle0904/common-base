@@ -61,12 +61,6 @@ public class UniqueIdGenerator {
             sequence = 0L;
         }
         lastTimestamp = timestamp;
-
-        System.out.println(Long.toBinaryString((timestamp - initTimestamp) << timestampLeftShift));
-        System.out.println(Long.toBinaryString(datacenterId << datacenterIdShift));
-        System.out.println(Long.toBinaryString(workerId << workerIdShift));
-        System.out.println(Long.toBinaryString(sequence));
-
         return ((timestamp - initTimestamp) << timestampLeftShift) | (datacenterId << datacenterIdShift) | (workerId << workerIdShift) | sequence;
     }
 
@@ -80,13 +74,5 @@ public class UniqueIdGenerator {
             timestamp = timeGen();
         }
         return timestamp;
-    }
-
-    public static void main(String[] args) {
-        UniqueIdGenerator idGenerator = new UniqueIdGenerator(0, 0);
-        for (int i = 0; i < 10; i++) {
-            long id = idGenerator.nextId();
-            System.out.println(String.format("%d, %s", id, Long.toBinaryString(id)));
-        }
     }
 }
