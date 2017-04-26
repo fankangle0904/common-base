@@ -65,7 +65,7 @@ public class AutoIncrementIdGenerator {
             @Override
             public void run() {
                 for (int i = 0; i < 10; i++) {
-                    System.out.println(generator.getNewId());
+                    System.out.println(Thread.currentThread().getName() + ":" + generator.getNewId());
                 }
             }
         }, "thread-1").start();
@@ -73,7 +73,7 @@ public class AutoIncrementIdGenerator {
             @Override
             public void run() {
                 for (int i = 0; i < 10; i++) {
-                    System.out.println(generator.getNewId());
+                    System.out.println(Thread.currentThread().getName() + ":" + generator.getNewId());
                 }
             }
         }, "thread-2").start();
@@ -81,7 +81,7 @@ public class AutoIncrementIdGenerator {
             @Override
             public void run() {
                 for (int i = 0; i < 10; i++) {
-                    System.out.println(generator.getNewId());
+                    System.out.println(Thread.currentThread().getName() + ":" + generator.getNewId());
                 }
             }
         }, "thread-3").start();
