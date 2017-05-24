@@ -1,32 +1,41 @@
 package com.github.fkl.util;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.fkl.exception.JsonException;
+import com.github.fkl.bean.Test;
+import com.github.fkl.util.json.JsonBase;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
 
 /**
- * Created by kanglefan on 17-4-24.
+ * Created by kanglefan on 17-5-24.
  */
 public class JsonUtil {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static JsonBase base;
 
     static {
-        //TODO 个性化设置ObjectMapper
+        new JsonUtil("com.github.fkl.util.json.JacksonUtil");
+    }
+
+    private JsonUtil(String className) {
+        try {
+            Class clazz = Class.forName(className);
+            if (clazz != null) {
+                base = (JsonBase) Proxy.newProxyInstance(JsonBase.class.getClassLoader(),
+                        new Class[]{JsonBase.class}, (InvocationHandler) clazz.newInstance());
+            }
+        } catch (Exception e) {}
     }
 
     public static String encode(Object obj) {
-        try {
-            return objectMapper.writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new JsonException("encode exception", e);
-        }
+        return base.serialize(obj);
     }
 
     public static <T> T decode(String json, Class<T> type) {
-        try {
-            return objectMapper.readValue(json, type);
-        } catch (Exception e) {
-            throw new JsonException("decode exception", e);
-        }
+        return base.deSerialize(json, type);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(JsonUtil.encode(new Test()));
     }
 }
