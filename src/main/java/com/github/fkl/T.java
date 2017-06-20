@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -31,5 +32,8 @@ public class T {
 
         List<String> list = Lists.newArrayList();
         Collections.shuffle(list);
+
+        ArrayList<Integer> arrayList = new ArrayList<Integer>();
+        arrayList.getClass().getMethod("add", Object.class).invoke(arrayList, "abc");
     }
 }
