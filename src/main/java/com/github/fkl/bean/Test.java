@@ -1,5 +1,7 @@
 package com.github.fkl.bean;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
 
 /**
@@ -30,5 +32,20 @@ public class Test implements Serializable, Comparable<Test> {
     @Override
     public int compareTo(Test o) {
         return testA.compareTo(testB);
+    }
+
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+//        return sun.misc.Hashing.stringHash32(testA);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Test)) {
+            return false;
+        }
+        return StringUtils.equals(testA, ((Test)obj).getTestA());
     }
 }
