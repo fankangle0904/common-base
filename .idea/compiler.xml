@@ -26,5 +26,8 @@
         <module name="common-base" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="common-base" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
